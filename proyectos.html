@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio Alejandro Sande Mansilla</title>
+    <title>Proyectos - Alejandro Sande Mansilla</title>
     <link rel="stylesheet" href="codigo/Estilos.css" />
   </head>
   <body>
@@ -45,20 +45,32 @@
     </nav>
 
     <!-- TITULO -->
-    <section class="title" id="inicio">
-      <h1>Portafolio de un Programador</h1>
+    <section class="title">
+      <h1>Proyectos</h1>
     </section>
 
     <main>
-      <!-- SOBRE MI -->
-      <section>
-        <h2>Sobre mí</h2>
-        <p>
-          Soy un estudiante de Segundo de desarrollo de aplicaciones web. Estoy
-          principalmente interesado en un puesto donde pueda aplicar mis
-          conocimientos informáticos para resolver problemas reales. Busco un
-          lugar donde, además, pueda aprender y formar parte de un equipo.
-        </p>
+      <!-- ========== SECCIÓN PROYECTOS ========== -->
+      <section id="proyectos">
+        <h2>Mis Proyectos</h2>
+        
+        <!-- CONTROLES -->
+        <div id="controles" aria-label="Controles de filtrado">
+          <div id="botones-lenguaje" role="toolbar" aria-label="Filtrar por lenguaje">
+            <!-- Botones generados automáticamente por el script -->
+          </div>
+
+          <button id="limpiar-btn" type="button">Todos</button>
+          
+          <div id="contador" aria-live="polite">
+            Mostrando 0 proyectos
+          </div>
+        </div>
+
+        <!-- LISTA DE PROYECTOS -->
+        <div class="lista-proyectos" aria-label="Proyectos listados">
+          <!-- Los proyectos se generarán dinámicamente desde JavaScript -->
+        </div>
       </section>
 
       <footer>Alejandro Sande Mansilla</footer>
