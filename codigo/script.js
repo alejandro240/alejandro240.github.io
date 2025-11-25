@@ -15,6 +15,110 @@ function nombreEtiqueta(etiqueta) {
 }
 
 // ===============================
+// ========== DATOS DE PROYECTOS ==========
+// ===============================
+
+const proyectosData = [
+  {
+    titulo: "AriaBootstrap - Página Portátiles",
+    descripcion: "Página Venta Portátiles.",
+    lenguajes: ["html"],
+    repositorio: "https://github.com/alejandro240/AriaBootstrap-Pagina-Portatiles"
+  },
+  {
+    titulo: "Projecte UF4 - Llista de tasques",
+    descripcion: "Página de Listado de Tareas.",
+    lenguajes: ["javascript"],
+    repositorio: "https://github.com/alejandro240/Projecte-UF4-Llista-de-tasques"
+  },
+  {
+    titulo: "Horoscopo Laravel",
+    descripcion: "Página Horoscopo (Laravel).",
+    lenguajes: ["laravel"],
+    repositorio: "https://github.com/alejandro240/Horoscopo-Laravel"
+  },
+  {
+    titulo: "Cataas PHP Laravel",
+    descripcion: "Página de gatitos (Cataas) en Laravel.",
+    lenguajes: ["laravel"],
+    repositorio: "https://github.com/alejandro240/Cataas-PHP-Laravel"
+  },
+  {
+    titulo: "PaginaColoresAccesible",
+    descripcion: "Página de Colores Accesible.",
+    lenguajes: ["html"],
+    repositorio: "https://github.com/alejandro240/PaginaColoresAccesible"
+  },
+  {
+    titulo: "PaginaAccesibleARIA",
+    descripcion: "Página Accesible con ARIA.",
+    lenguajes: ["html"],
+    repositorio: "https://github.com/alejandro240/PaginaAccesibleARIA"
+  },
+  {
+    titulo: "PaginaAccesible",
+    descripcion: "Página Accesible.",
+    lenguajes: ["html"],
+    repositorio: "https://github.com/alejandro240/PaginaAccesible"
+  },
+  {
+    titulo: "PaginaMultimedia",
+    descripcion: "Página Multimedia.",
+    lenguajes: ["html"],
+    repositorio: "https://github.com/alejandro240/PaginaMultimedia"
+  },
+  {
+    titulo: "Manipulacion de video",
+    descripcion: "Página de Video.",
+    lenguajes: ["html"],
+    repositorio: "https://github.com/alejandro240/Manipulacion-de-video"
+  },
+  {
+    titulo: "AA - Gestor de Categorias",
+    descripcion: "Página de gestor de Heroes.",
+    lenguajes: ["php"],
+    repositorio: "https://github.com/alejandro240/AA-Gestor-de-Categorias"
+  },
+  {
+    titulo: "Motosierra.arg",
+    descripcion: "Página de la Motosierra.",
+    lenguajes: ["html"],
+    repositorio: "https://github.com/alejandro240/Motosierra.arg"
+  },
+  {
+    titulo: "AnimacionesSvg",
+    descripcion: "Página con Animaciones SVG.",
+    lenguajes: ["html"],
+    repositorio: "https://github.com/alejandro240/AnimacionesSvg"
+  }
+];
+
+// ===============================
+// ========== RENDERIZAR PROYECTOS ==========
+// ===============================
+
+function renderizarProyectos() {
+  const contenedor = document.querySelector('.lista-proyectos');
+  if (!contenedor) return;
+
+  contenedor.innerHTML = proyectosData.map(proyecto => `
+    <article class="fila-item" 
+             data-lenguajes="${proyecto.lenguajes.join(',')}" 
+             data-titulo="${proyecto.titulo}">
+      <h3>${proyecto.titulo}</h3>
+      <p>${proyecto.descripcion}</p>
+      <p>
+        <a href="${proyecto.repositorio}" 
+           target="_blank" 
+           rel="noopener">
+          Ver código
+        </a>
+      </p>
+    </article>
+  `).join('');
+}
+
+// ===============================
 // ========== ESTADO GLOBAL ==========
 // ===============================
 
@@ -79,6 +183,9 @@ function aplicarFiltros() {
 // ===============================
 
 document.addEventListener("DOMContentLoaded", () => {
+  // Renderizar proyectos primero
+  renderizarProyectos();
+  
   listaProyectos = seleccionarTodos("article.fila-item");
   contenedorBotones = seleccionar("#botones-lenguaje");
   botonTodos = seleccionar("#limpiar-btn");
