@@ -106,10 +106,10 @@ document.addEventListener("DOMContentLoaded", () => {
     boton.type = "button";
     boton.dataset.filtro = lenguaje;
     let rutaLogo = "";
-    if (lenguaje === "php") rutaLogo = "php.png";
-    else if (lenguaje === "javascript") rutaLogo = "javascript.png";
-    else if (lenguaje === "html") rutaLogo = "html.png";
-    else if (lenguaje === "laravel") rutaLogo = "laravel.png";
+    if (lenguaje === "php") rutaLogo = "imagenes/php.png";
+    else if (lenguaje === "javascript") rutaLogo = "imagenes/javascript.png";
+    else if (lenguaje === "html") rutaLogo = "imagenes/html.png";
+    else if (lenguaje === "laravel") rutaLogo = "imagenes/laravel.png";
     if (rutaLogo) {
       const img = document.createElement("img");
       img.src = rutaLogo;
