@@ -20,6 +20,13 @@ function nombreEtiqueta(etiqueta) {
 
 const proyectosData = [
   {
+    titulo: "Lista de Compra",
+    descripcion: "Aplicación web para gestionar listas de compra.",
+    lenguajes: ["javascript"],
+    repositorio: "https://github.com/pabloms05/proyectoListaCompra",
+    url: "http://listacompra.duckdns.org"
+  },
+  {
     titulo: "AriaBootstrap - Página Portátiles",
     descripcion: "Página Venta Portátiles.",
     lenguajes: ["html"],
@@ -113,6 +120,7 @@ function renderizarProyectos() {
            rel="noopener">
           Ver código
         </a>
+        ${proyecto.url ? `<a href="${proyecto.url}" target="_blank" rel="noopener">Ver página</a>` : ''}
       </p>
     </article>
   `).join('');
