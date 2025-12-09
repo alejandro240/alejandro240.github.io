@@ -110,42 +110,54 @@ function renderizarDevChallenge() {
   const contenedor = document.querySelector('.devchallenge-proyectos');
   if (!contenedor) return;
 
-  contenedor.innerHTML = devChallengeData.map(proyecto => `
-    <article class="devchallenge-item">
-      <h3>${proyecto.titulo}</h3>
-      <p>${proyecto.descripcion}</p>
-      <p>
-        <a href="${proyecto.repositorio}" 
-           target="_blank" 
-           rel="noopener">
-          Ver código
-        </a>
-        ${proyecto.url ? `<a href="${proyecto.url}" target="_blank" rel="noopener">Ver página</a>` : ''}
-      </p>
-    </article>
-  `).join('');
+  try {
+    contenedor.innerHTML = devChallengeData.map(proyecto => `
+      <article class="devchallenge-item">
+        <h3>${proyecto.titulo}</h3>
+        <p>${proyecto.descripcion}</p>
+        <p>
+          <a href="${proyecto.repositorio}" 
+             target="_blank" 
+             rel="noopener"
+             aria-label="Ver código de ${proyecto.titulo} en GitHub">
+            Ver código
+          </a>
+          ${proyecto.url ? `<a href="${proyecto.url}" target="_blank" rel="noopener" aria-label="Ver página en vivo de ${proyecto.titulo}">Ver página</a>` : ''}
+        </p>
+      </article>
+    `).join('');
+  } catch (error) {
+    console.error('Error al renderizar DevChallenge:', error);
+    contenedor.innerHTML = '<p>Error al cargar proyectos destacados</p>';
+  }
 }
 
 function renderizarProyectos() {
   const contenedor = document.querySelector('.lista-proyectos');
   if (!contenedor) return;
 
-  contenedor.innerHTML = proyectosData.map(proyecto => `
-    <article class="fila-item" 
-             data-lenguajes="${proyecto.lenguajes.join(',')}" 
-             data-titulo="${proyecto.titulo}">
-      <h3>${proyecto.titulo}</h3>
-      <p>${proyecto.descripcion}</p>
-      <p>
-        <a href="${proyecto.repositorio}" 
-           target="_blank" 
-           rel="noopener">
-          Ver código
-        </a>
-        ${proyecto.url ? `<a href="${proyecto.url}" target="_blank" rel="noopener">Ver página</a>` : ''}
-      </p>
-    </article>
-  `).join('');
+  try {
+    contenedor.innerHTML = proyectosData.map(proyecto => `
+      <article class="fila-item" 
+               data-lenguajes="${proyecto.lenguajes.join(',')}" 
+               data-titulo="${proyecto.titulo}">
+        <h3>${proyecto.titulo}</h3>
+        <p>${proyecto.descripcion}</p>
+        <p>
+          <a href="${proyecto.repositorio}" 
+             target="_blank" 
+             rel="noopener"
+             aria-label="Ver código de ${proyecto.titulo} en GitHub">
+            Ver código
+          </a>
+          ${proyecto.url ? `<a href="${proyecto.url}" target="_blank" rel="noopener" aria-label="Ver página en vivo de ${proyecto.titulo}">Ver página</a>` : ''}
+        </p>
+      </article>
+    `).join('');
+  } catch (error) {
+    console.error('Error al renderizar proyectos:', error);
+    contenedor.innerHTML = '<p>Error al cargar proyectos</p>';
+  }
 }
 
 // ===============================
@@ -204,8 +216,6 @@ function aplicarFiltros() {
   if (contadorProyectos) {
     contadorProyectos.textContent = `Mostrando ${proyectosVisibles} proyecto${proyectosVisibles !== 1 ? "s" : ""}`;
   }
-
-  console.log("Filtro activo:", filtroActivo, "Proyectos visibles:", proyectosVisibles, coincidencias);
 }
 
 // ===============================
@@ -269,86 +279,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
   aplicarFiltros();
   if (botonTodos) botonTodos.addEventListener("click", limpiarFiltros);
-});
-
-// ===============================
-// ========== SLIDER HABILIDADES ==========
-// ===============================
-
-document.addEventListener("DOMContentLoaded", () => {
-  const sliderHabilidades = seleccionar(".habilidades-slider");
-  if (!sliderHabilidades) return;
-  const listaHabilidades = sliderHabilidades.querySelector(".habilidades-lista");
-  const botonAnterior = sliderHabilidades.querySelector(".habilidades-prev");
-  const botonSiguiente = sliderHabilidades.querySelector(".habilidades-next");
-  const elementos = listaHabilidades.querySelectorAll("li");
-  const cantidadVisible = 3;
-  let indice = 0;
-
-  function actualizarSlider() {
-    const anchoElemento = elementos[0].offsetWidth + 24;
-    listaHabilidades.style.transform = `translateX(-${indice * anchoElemento}px)`;
-    elementos.forEach((elemento, i) => {
-      elemento.classList.remove("habilidad-activa", "habilidad-lateral");
-      if (i === indice + 1) {
-        elemento.classList.add("habilidad-activa");
-      } else if (i === indice || i === indice + 2) {
-        elemento.classList.add("habilidad-lateral");
+  
+  // Navegación con flechas en botones de filtrado
+  const botonesLenguaje = document.querySelectorAll('#botones-lenguaje button');
+  botonesLenguaje.forEach((boton, index) => {
+    boton.addEventListener('keydown', (e) => {
+      let targetIndex = index;
+      switch(e.key) {
+        case 'ArrowRight':
+        case 'ArrowDown':
+          e.preventDefault();
+          targetIndex = (index + 1) % botonesLenguaje.length;
+          break;
+        case 'ArrowLeft':
+        case 'ArrowUp':
+          e.preventDefault();
+          targetIndex = (index - 1 + botonesLenguaje.length) % botonesLenguaje.length;
+          break;
+      }
+      if (targetIndex !== index) {
+        botonesLenguaje[targetIndex].focus();
       }
     });
-  }
-
-  function animarDesplazamiento(direccion, callback) {
-    const claseAnimacion = direccion === "izquierda" ? "slide-left" : "slide-right";
-    listaHabilidades.classList.add(claseAnimacion);
-    setTimeout(() => {
-      if (typeof callback === "function") callback();
-      listaHabilidades.classList.remove(claseAnimacion);
-    }, 350);
-  }
-
-  botonAnterior.addEventListener("click", () => {
-    if (elementos.length <= cantidadVisible) {
-      indice = 0;
-      actualizarSlider();
-      return;
-    }
-    const indiceAnterior = indice;
-    indice = (indice - 1 + (elementos.length - cantidadVisible + 1)) % (elementos.length - cantidadVisible + 1);
-    if (indiceAnterior === 0 && indice === elementos.length - cantidadVisible) {
-      animarDesplazamiento("izquierda", actualizarSlider);
-    } else {
-      actualizarSlider();
-    }
   });
-
-  botonSiguiente.addEventListener("click", () => {
-    if (elementos.length <= cantidadVisible) {
-      indice = 0;
-      actualizarSlider();
-      return;
-    }
-    const indiceAnterior = indice;
-    indice = (indice + 1) % (elementos.length - cantidadVisible + 1);
-    if (indiceAnterior === elementos.length - cantidadVisible && indice === 0) {
-      animarDesplazamiento("derecha", actualizarSlider);
-    } else {
-      actualizarSlider();
-    }
-  });
-
-  actualizarSlider();
-  window.addEventListener("resize", actualizarSlider);
-});
-
-// ===============================
-// ========== NAVEGACIÓN POR TECLADO ==========
-// ===============================
-
-document.addEventListener("DOMContentLoaded", () => {
+  
   // Navegación con flechas en grid de habilidades
   const habilidadesCards = document.querySelectorAll('.habilidad-card');
-  
   habilidadesCards.forEach((card, index) => {
     card.addEventListener('keydown', (e) => {
       let targetIndex = index;
@@ -374,7 +330,9 @@ document.addEventListener("DOMContentLoaded", () => {
         case 'Enter':
         case ' ':
           e.preventDefault();
-          card.click();
+          // Tarjeta de habilidad activada
+          card.style.transform = 'scale(0.95)';
+          setTimeout(() => card.style.transform = '', 150);
           break;
       }
       
@@ -383,30 +341,14 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
-
-  // Navegación con flechas en botones de filtrado
-  const botonesLenguaje = document.querySelectorAll('#botones-lenguaje button');
   
-  botonesLenguaje.forEach((boton, index) => {
-    boton.addEventListener('keydown', (e) => {
-      let targetIndex = index;
-      
-      switch(e.key) {
-        case 'ArrowRight':
-        case 'ArrowDown':
-          e.preventDefault();
-          targetIndex = (index + 1) % botonesLenguaje.length;
-          break;
-        case 'ArrowLeft':
-        case 'ArrowUp':
-          e.preventDefault();
-          targetIndex = (index - 1 + botonesLenguaje.length) % botonesLenguaje.length;
-          break;
-      }
-      
-      if (targetIndex !== index) {
-        botonesLenguaje[targetIndex].focus();
-      }
-    });
+  // Indicador de página activa en menú
+  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.menu li a').forEach(link => {
+    const linkPage = link.getAttribute('href');
+    if (linkPage === currentPage) {
+      link.classList.add('active');
+      link.setAttribute('aria-current', 'page');
+    }
   });
 });
