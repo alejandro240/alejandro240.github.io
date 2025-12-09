@@ -18,14 +18,16 @@ function nombreEtiqueta(etiqueta) {
 // ========== DATOS DE PROYECTOS ==========
 // ===============================
 
-const proyectosData = [
+const devChallengeData = [
   {
     titulo: "Lista de Compra",
     descripcion: "Aplicación web para gestionar listas de compra.",
-    lenguajes: ["javascript"],
     repositorio: "https://github.com/pabloms05/proyectoListaCompra",
     url: "http://listacompra.duckdns.org"
-  },
+  }
+];
+
+const proyectosData = [
   {
     titulo: "AriaBootstrap - Página Portátiles",
     descripcion: "Página Venta Portátiles.",
@@ -103,6 +105,26 @@ const proyectosData = [
 // ===============================
 // ========== RENDERIZAR PROYECTOS ==========
 // ===============================
+
+function renderizarDevChallenge() {
+  const contenedor = document.querySelector('.devchallenge-proyectos');
+  if (!contenedor) return;
+
+  contenedor.innerHTML = devChallengeData.map(proyecto => `
+    <article class="devchallenge-item">
+      <h3>${proyecto.titulo}</h3>
+      <p>${proyecto.descripcion}</p>
+      <p>
+        <a href="${proyecto.repositorio}" 
+           target="_blank" 
+           rel="noopener">
+          Ver código
+        </a>
+        ${proyecto.url ? `<a href="${proyecto.url}" target="_blank" rel="noopener">Ver página</a>` : ''}
+      </p>
+    </article>
+  `).join('');
+}
 
 function renderizarProyectos() {
   const contenedor = document.querySelector('.lista-proyectos');
@@ -191,7 +213,8 @@ function aplicarFiltros() {
 // ===============================
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Renderizar proyectos primero
+  // Renderizar DevChallenge y proyectos primero
+  renderizarDevChallenge();
   renderizarProyectos();
   
   listaProyectos = seleccionarTodos("article.fila-item");

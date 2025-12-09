@@ -267,6 +267,105 @@ footer {
 /* ========== PROYECTOS ========== */
 /* =============================== */
 
+#devchallenge {
+  background: var(--card-bg);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  max-width: 1000px;
+  margin: 40px auto;
+  border: 1px solid var(--secondary-color);
+  position: relative;
+}
+
+#devchallenge::before {
+  content: '🏆 Proyectos Destacados';
+  position: absolute;
+  top: -15px;
+  left: 20px;
+  background: var(--secondary-color);
+  color: var(--primary-color);
+  padding: 5px 15px;
+  border-radius: 5px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+.devchallenge-proyectos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.devchallenge-item {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--hover-bg) 100%);
+  border-radius: 10px;
+  box-shadow: 0 8px 25px rgba(100, 255, 218, 0.2);
+  padding: 30px;
+  transition: all 0.3s ease;
+  border: 2px solid var(--secondary-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.devchallenge-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, var(--secondary-color), #64ffda80);
+}
+
+.devchallenge-item:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 15px 40px rgba(100, 255, 218, 0.4);
+}
+
+.devchallenge-item h3 {
+  font-size: 1.5rem;
+  color: var(--secondary-color);
+  margin-bottom: 15px;
+  font-weight: 700;
+  text-align: left;
+  text-shadow: 0 2px 10px rgba(100, 255, 218, 0.3);
+}
+
+.devchallenge-item p {
+  color: var(--text-light);
+  margin-bottom: 15px;
+  font-size: 1.05rem;
+  text-align: left;
+}
+
+.devchallenge-item a {
+  color: var(--primary-color);
+  background: var(--secondary-color);
+  font-weight: 700;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  padding: 10px 20px;
+  border: 2px solid var(--secondary-color);
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.devchallenge-item a:hover {
+  background: transparent;
+  color: var(--secondary-color);
+  transform: translateX(5px);
+  box-shadow: 0 5px 15px rgba(100, 255, 218, 0.3);
+}
+
 #proyectos {
   background: var(--card-bg);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
