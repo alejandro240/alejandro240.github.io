@@ -222,8 +222,8 @@ document.addEventListener("DOMContentLoaded", () => {
   botonTodos = seleccionar("#limpiar-btn");
   contadorProyectos = seleccionar("#contador");
 
+  // Si no existe el contenedor, salir silenciosamente (no estamos en la página de proyectos)
   if (!contenedorBotones) {
-    console.error("No existe el contenedor de botones #botones-lenguaje");
     return;
   }
 
