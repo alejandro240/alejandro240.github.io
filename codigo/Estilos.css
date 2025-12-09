@@ -252,6 +252,9 @@ footer {
   object-fit: contain;
   margin-bottom: 15px;
   filter: drop-shadow(0 5px 15px rgba(100, 255, 218, 0.3));
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  -ms-interpolation-mode: nearest-neighbor;
 }
 
 .habilidad-card h3 {
