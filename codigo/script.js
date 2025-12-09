@@ -340,3 +340,73 @@ document.addEventListener("DOMContentLoaded", () => {
   actualizarSlider();
   window.addEventListener("resize", actualizarSlider);
 });
+
+// ===============================
+// ========== NAVEGACIÓN POR TECLADO ==========
+// ===============================
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Navegación con flechas en grid de habilidades
+  const habilidadesCards = document.querySelectorAll('.habilidad-card');
+  
+  habilidadesCards.forEach((card, index) => {
+    card.addEventListener('keydown', (e) => {
+      let targetIndex = index;
+      const columns = window.innerWidth > 768 ? 4 : (window.innerWidth > 480 ? 3 : 2);
+      
+      switch(e.key) {
+        case 'ArrowRight':
+          e.preventDefault();
+          targetIndex = (index + 1) % habilidadesCards.length;
+          break;
+        case 'ArrowLeft':
+          e.preventDefault();
+          targetIndex = (index - 1 + habilidadesCards.length) % habilidadesCards.length;
+          break;
+        case 'ArrowDown':
+          e.preventDefault();
+          targetIndex = (index + columns) % habilidadesCards.length;
+          break;
+        case 'ArrowUp':
+          e.preventDefault();
+          targetIndex = (index - columns + habilidadesCards.length) % habilidadesCards.length;
+          break;
+        case 'Enter':
+        case ' ':
+          e.preventDefault();
+          card.click();
+          break;
+      }
+      
+      if (targetIndex !== index) {
+        habilidadesCards[targetIndex].focus();
+      }
+    });
+  });
+
+  // Navegación con flechas en botones de filtrado
+  const botonesLenguaje = document.querySelectorAll('#botones-lenguaje button');
+  
+  botonesLenguaje.forEach((boton, index) => {
+    boton.addEventListener('keydown', (e) => {
+      let targetIndex = index;
+      
+      switch(e.key) {
+        case 'ArrowRight':
+        case 'ArrowDown':
+          e.preventDefault();
+          targetIndex = (index + 1) % botonesLenguaje.length;
+          break;
+        case 'ArrowLeft':
+        case 'ArrowUp':
+          e.preventDefault();
+          targetIndex = (index - 1 + botonesLenguaje.length) % botonesLenguaje.length;
+          break;
+      }
+      
+      if (targetIndex !== index) {
+        botonesLenguaje[targetIndex].focus();
+      }
+    });
+  });
+});

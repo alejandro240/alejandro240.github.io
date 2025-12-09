@@ -18,11 +18,19 @@
   box-sizing: border-box; 
 }
 
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
 body { 
   font-family: 'Roboto Mono', 'Consolas', 'Monaco', monospace;
   background: var(--bg-color);
   color: var(--text-color);
   line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 /* =============================== */
@@ -101,11 +109,23 @@ body {
   transform: scale(0);
 }
 
-.menu li a:hover .imagen {
+.menu li a:hover .imagen,
+.menu li a:focus .imagen {
   width: 48px;
   height: 48px;
   opacity: 1;
   filter: brightness(0);
+}
+
+.menu li a:focus {
+  background: white;
+  outline: 2px solid var(--secondary-color);
+  outline-offset: -2px;
+}
+
+.menu li a:focus .text-item {
+  opacity: 0;
+  transform: scale(0);
 }
 
 .menu li a .down-item {
@@ -114,9 +134,202 @@ body {
 
 @media (max-width: 900px) {
   .menu { width: 100%; }
-  .menu li a:hover .imagen { 
+  .menu li a:hover .imagen,
+  .menu li a:focus .imagen { 
     width: 36px; 
     height: 36px; 
+  }
+}
+
+@media (max-width: 768px) {
+  /* Menu vertical en tablets */
+  .menu {
+    height: auto;
+    flex-direction: column;
+  }
+  
+  .menu li {
+    width: 100%;
+  }
+  
+  .menu li a {
+    height: 60px;
+    border-right: none;
+    border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+  }
+  
+  .menu .first-item a {
+    border-left: none;
+  }
+
+  /* Títulos más pequeños */
+  .title {
+    padding: 40px 15px;
+  }
+  
+  .title h1 {
+    font-size: 2rem;
+    letter-spacing: 2px;
+  }
+  
+  .title h1::after {
+    width: 60px;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  /* Secciones con menos padding */
+  section {
+    padding: 30px 20px;
+    margin: 20px 10px;
+  }
+  
+  main {
+    padding: 10px;
+  }
+
+  /* Textos más pequeños */
+  p {
+    font-size: 1rem;
+  }
+
+  /* DevChallenge items */
+  .devchallenge-item {
+    padding: 20px;
+  }
+
+  .devchallenge-item h3 {
+    font-size: 1.3rem;
+  }
+
+  /* Proyectos */
+  .fila-item {
+    padding: 20px;
+  }
+
+  .fila-item h3 {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Títulos aún más pequeños para móviles */
+  .title {
+    padding: 30px 10px;
+    margin-bottom: 20px;
+  }
+  
+  .title h1 {
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+  }
+  
+  .title h1::after {
+    width: 50px;
+    height: 2px;
+  }
+  
+  h2 {
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+  }
+  
+  h2::after {
+    width: 60px;
+  }
+  
+  /* Secciones compactas */
+  section {
+    padding: 20px 15px;
+    margin: 15px 5px;
+    border-radius: 8px;
+  }
+  
+  main {
+    padding: 5px;
+  }
+  
+  /* Textos ajustados */
+  p {
+    font-size: 0.95rem;
+    text-align: left;
+    line-height: 1.6;
+  }
+
+  /* Menu más compacto */
+  .menu li a {
+    height: 55px;
+  }
+
+  .menu li a .text-item {
+    font-size: 14px;
+  }
+
+  /* DevChallenge badge más pequeño */
+  #devchallenge::before {
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    top: -12px;
+  }
+
+  .devchallenge-item {
+    padding: 15px;
+  }
+
+  .devchallenge-item h3 {
+    font-size: 1.2rem;
+  }
+
+  .devchallenge-item p {
+    font-size: 0.95rem;
+  }
+
+  .devchallenge-item a {
+    padding: 8px 15px;
+    font-size: 0.8rem;
+    margin-right: 8px;
+  }
+
+  /* Proyectos compactos */
+  .fila-item {
+    padding: 15px;
+  }
+
+  .fila-item h3 {
+    font-size: 1.1rem;
+  }
+
+  .fila-item p {
+    font-size: 0.9rem;
+  }
+
+  .fila-item a {
+    padding: 8px 15px;
+    font-size: 0.8rem;
+  }
+
+  /* Botones de filtrado más pequeños */
+  #botones-lenguaje button,
+  #limpiar-btn {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+  }
+
+  .logo-lenguaje {
+    width: 18px;
+    height: 18px;
+  }
+
+  #contador {
+    font-size: 0.9rem;
+  }
+
+  /* Footer responsive */
+  footer {
+    padding: 20px 10px;
+    font-size: 0.85rem;
   }
 }
 
@@ -157,6 +370,8 @@ main {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+  flex: 1;
+  width: 100%;
 }
 
 section {
@@ -209,12 +424,13 @@ p {
 footer {
   text-align: center;
   padding: 30px 0;
-  background: var(--card-bg);
+  background: var(--bg-color);
   border-top: 2px solid var(--secondary-color);
   font-size: 0.95rem;
-  max-width: 1000px;
-  margin: 40px auto 0;
+  width: 100%;
+  margin: 40px 0 0 0;
   color: var(--text-color);
+  position: relative;
 }
 
 /* =============================== */
@@ -230,6 +446,37 @@ footer {
   padding: 20px;
 }
 
+@media (max-width: 768px) {
+  .habilidades-grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 20px;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .habilidades-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 10px;
+  }
+
+  .habilidad-card {
+    padding: 20px 15px;
+    border-radius: 12px;
+  }
+
+  .habilidad-card img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+  }
+
+  .habilidad-card h3 {
+    font-size: 0.95rem;
+  }
+}
+
 .habilidad-card {
   background: var(--primary-color);
   border: 2px solid rgba(100, 255, 218, 0.2);
@@ -238,6 +485,15 @@ footer {
   text-align: center;
   transition: all 0.3s ease;
   cursor: pointer;
+  outline: none;
+}
+
+.habilidad-card:focus {
+  transform: translateY(-10px);
+  border-color: var(--secondary-color);
+  box-shadow: 0 10px 30px rgba(100, 255, 218, 0.3);
+  outline: 2px solid var(--secondary-color);
+  outline-offset: 4px;
 }
 
 .habilidad-card:hover {
@@ -303,6 +559,20 @@ footer {
   margin: 0 auto;
 }
 
+@media (max-width: 768px) {
+  .devchallenge-proyectos {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .devchallenge-proyectos {
+    padding: 10px;
+  }
+}
+
 .devchallenge-item {
   background: linear-gradient(135deg, var(--primary-color) 0%, var(--hover-bg) 100%);
   border-radius: 10px;
@@ -324,7 +594,8 @@ footer {
   background: linear-gradient(90deg, var(--secondary-color), #64ffda80);
 }
 
-.devchallenge-item:hover {
+.devchallenge-item:hover,
+.devchallenge-item:focus-within {
   transform: translateY(-8px) scale(1.02);
   box-shadow: 0 15px 40px rgba(100, 255, 218, 0.4);
 }
@@ -362,11 +633,14 @@ footer {
   margin-top: 10px;
 }
 
-.devchallenge-item a:hover {
+.devchallenge-item a:hover,
+.devchallenge-item a:focus {
   background: transparent;
   color: var(--secondary-color);
   transform: translateX(5px);
   box-shadow: 0 5px 15px rgba(100, 255, 218, 0.3);
+  outline: 2px solid var(--secondary-color);
+  outline-offset: 2px;
 }
 
 #proyectos {
@@ -387,6 +661,22 @@ footer {
   padding: 20px;
   background: var(--primary-color);
   border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  #controles {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 15px;
+  }
+  
+  #botones-lenguaje {
+    justify-content: center;
+  }
+  
+  #limpiar-btn {
+    width: 100%;
+  }
 }
 
 #botones-lenguaje {
@@ -505,10 +795,13 @@ footer {
   margin-top: 10px;
 }
 
-.fila-item a:hover {
+.fila-item a:hover,
+.fila-item a:focus {
   background: var(--secondary-color);
   color: var(--primary-color);
   transform: translateX(5px);
+  outline: 2px solid var(--secondary-color);
+  outline-offset: 2px;
 }
 
 /* =============================== */
@@ -591,4 +884,54 @@ section#contacto button[type="submit"]:hover {
   background: var(--text-light);
   transform: translateY(-3px);
   box-shadow: 0 10px 25px rgba(100, 255, 218, 0.4);
+}
+
+@media (max-width: 768px) {
+  section#contacto form {
+    padding: 30px 25px;
+    gap: 15px;
+  }
+  
+  section#contacto label {
+    font-size: 1rem;
+  }
+  
+  section#contacto input[type="text"],
+  section#contacto input[type="email"],
+  section#contacto textarea {
+    font-size: 0.95rem;
+    padding: 10px 12px;
+  }
+
+  section#contacto button[type="submit"] {
+    padding: 12px 25px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  section#contacto form {
+    padding: 20px 15px;
+    gap: 12px;
+  }
+  
+  section#contacto label {
+    font-size: 0.9rem;
+  }
+  
+  section#contacto input[type="text"],
+  section#contacto input[type="email"],
+  section#contacto textarea {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+
+  section#contacto textarea {
+    min-height: 100px;
+  }
+
+  section#contacto button[type="submit"] {
+    padding: 12px 20px;
+    font-size: 0.95rem;
+  }
 }
