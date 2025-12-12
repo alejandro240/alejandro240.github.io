@@ -22,6 +22,8 @@ html, body {
   overflow-x: hidden;
   width: 100%;
   scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  -webkit-tap-highlight-color: rgba(100, 255, 218, 0.3);
 }
 
 body { 
@@ -32,6 +34,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  touch-action: pan-y pinch-zoom;
 }
 
 /* =============================== */
@@ -160,6 +163,7 @@ body {
   
   .menu li a {
     height: 60px;
+    min-height: 48px;
     border-right: none;
     border-bottom: 1px solid rgba(100, 255, 218, 0.1);
   }
@@ -217,6 +221,14 @@ body {
 
   .fila-item h3 {
     font-size: 1.2rem;
+  }
+  
+  /* Enlaces y botones con área táctil más grande */
+  .devchallenge-item a,
+  .fila-item a {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 12px 24px;
   }
 }
 
@@ -281,57 +293,70 @@ body {
   }
 
   .devchallenge-item {
-    padding: 15px;
+    padding: 15px 12px;
   }
 
   .devchallenge-item h3 {
     font-size: 1.2rem;
+    margin-bottom: 10px;
   }
 
   .devchallenge-item p {
     font-size: 0.95rem;
+    margin-bottom: 12px;
   }
 
   .devchallenge-item a {
-    padding: 8px 15px;
-    font-size: 0.8rem;
-    margin-right: 8px;
+    padding: 10px 16px;
+    font-size: 0.85rem;
+    display: inline-block;
+    margin: 5px 5px 5px 0;
   }
 
   /* Proyectos compactos */
   .fila-item {
-    padding: 15px;
+    padding: 15px 12px;
+    margin: 0;
   }
 
   .fila-item h3 {
     font-size: 1.1rem;
+    margin-bottom: 10px;
   }
 
   .fila-item p {
     font-size: 0.9rem;
+    margin-bottom: 12px;
   }
 
   .fila-item a {
-    padding: 8px 15px;
-    font-size: 0.8rem;
+    padding: 10px 16px;
+    font-size: 0.85rem;
+    display: inline-block;
+    margin: 5px 5px 5px 0;
   }
 
   /* Botones de filtrado con área táctil mínima */
   #botones-lenguaje button,
   #limpiar-btn {
-    padding: 12px 16px;
-    font-size: 0.85rem;
+    padding: 12px 14px;
+    font-size: 0.8rem;
     min-height: 44px;
     min-width: 44px;
   }
 
+  #botones-lenguaje {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
   .logo-lenguaje {
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
   }
 
   #contador {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
 
   /* Footer responsive */
@@ -391,6 +416,8 @@ section {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   max-width: 1000px;
   border: 1px solid rgba(100, 255, 218, 0.1);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 h1, h2 {
@@ -572,11 +599,26 @@ footer {
     gap: 20px;
     padding: 15px;
   }
+  
+  #devchallenge::before {
+    font-size: 0.85rem;
+  }
 }
 
 @media (max-width: 480px) {
   .devchallenge-proyectos {
     padding: 10px;
+    gap: 15px;
+  }
+  
+  #devchallenge {
+    margin: 20px 5px;
+    border-radius: 8px;
+  }
+  
+  #devchallenge::before {
+    font-size: 0.75rem;
+    padding: 4px 10px;
   }
 }
 
@@ -657,6 +699,20 @@ footer {
   max-width: 1000px;
   margin: 40px auto;
   border: 1px solid rgba(100, 255, 218, 0.1);
+  padding: 0;
+}
+
+@media (max-width: 768px) {
+  #proyectos {
+    margin: 20px 10px;
+    border-radius: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  #proyectos {
+    margin: 15px 5px;
+  }
 }
 
 #controles {
@@ -675,13 +731,46 @@ footer {
     flex-direction: column;
     align-items: stretch;
     padding: 15px;
+    gap: 12px;
   }
   
   #botones-lenguaje {
     justify-content: center;
+    gap: 10px;
+    order: 0;
   }
   
   #limpiar-btn {
+    width: 100%;
+    min-height: 48px;
+    order: 1;
+  }
+  
+  #contador {
+    text-align: center;
+    margin: 10px 0 0 0;
+    order: 2;
+  }
+}
+
+@media (max-width: 480px) {
+  #controles {
+    padding: 12px;
+    gap: 10px;
+  }
+  
+  #botones-lenguaje {
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  #limpiar-btn {
+    order: 1;
+  }
+  
+  #contador {
+    order: 2;
     width: 100%;
   }
 }
@@ -709,6 +798,7 @@ footer {
   font-family: 'Roboto Mono', monospace;
   text-transform: uppercase;
   letter-spacing: 1px;
+  min-height: 44px;
 }
 
 #botones-lenguaje button:hover,
@@ -743,7 +833,7 @@ footer {
 
 .lista-proyectos {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
   gap: 25px;
   margin-top: 30px;
   padding: 20px;
@@ -752,6 +842,17 @@ footer {
 @media (max-width: 700px) {
   .lista-proyectos {
     grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 15px 10px;
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .lista-proyectos {
+    gap: 15px;
+    padding: 10px 5px;
+    margin-top: 15px;
   }
 }
 
@@ -763,6 +864,19 @@ footer {
   transition: all 0.3s ease;
   border-left: 4px solid var(--secondary-color);
   border: 2px solid rgba(100, 255, 218, 0.1);
+}
+
+@media (max-width: 768px) {
+  .fila-item {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .fila-item {
+    padding: 15px;
+    border-radius: 8px;
+  }
 }
 
 .fila-item:hover,
@@ -944,15 +1058,18 @@ section#contacto button[type="submit"]:hover {
   section#contacto textarea {
     font-size: 0.9rem;
     padding: 10px;
+    min-height: 44px;
   }
 
   section#contacto textarea {
-    min-height: 100px;
+    min-height: 120px;
   }
 
   section#contacto button[type="submit"] {
-    padding: 12px 20px;
+    padding: 14px 20px;
     font-size: 0.95rem;
+    min-height: 48px;
+    width: 100%;
   }
 }
 
@@ -971,5 +1088,220 @@ section#contacto button[type="submit"]:hover {
   
   .habilidad-card img {
     max-width: 60px;
+  }
+}
+
+/* =============================== */
+/* ========== INDEX/INICIO ======= */
+/* =============================== */
+
+.tarjetas-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+  width: 100%;
+  max-width: 100%;
+}
+
+.tarjeta {
+  background: rgba(100, 255, 218, 0.1);
+  border: 2px solid #64ffda;
+  border-radius: 8px;
+  padding: 2rem;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.tarjeta:hover,
+.tarjeta:focus-within {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(100, 255, 218, 0.3);
+}
+
+.tarjeta h3 {
+  color: #64ffda;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.tarjeta p {
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+.tarjeta-btn {
+  display: inline-block;
+  background: #64ffda;
+  color: #0a192f;
+  padding: 0.75rem 2rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s;
+  min-height: 44px;
+  min-width: 44px;
+}
+
+.tarjeta-btn:hover,
+.tarjeta-btn:focus {
+  background: #52d4ba;
+  transform: scale(1.05);
+  outline: 2px solid #64ffda;
+  outline-offset: 2px;
+}
+
+/* Carrusel de iconos */
+.icon-carousel {
+  overflow: hidden;
+  height: 60px;
+  margin: 1.5rem 0;
+  position: relative;
+  -webkit-mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+  mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+}
+
+.icon-track {
+  display: flex;
+  gap: 1rem;
+  animation: scroll-icons 15s linear infinite;
+  width: max-content;
+}
+
+.icon-track:hover {
+  animation-play-state: paused;
+}
+
+.icon-carousel img {
+  height: 50px;
+  opacity: 0.8;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.icon-carousel img:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+@keyframes scroll-icons {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.github-icon-container {
+  margin: 1.5rem 0;
+}
+
+.github-icon {
+  opacity: 0.8;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.github-icon:hover {
+  opacity: 1;
+  transform: rotate(360deg) scale(1.1);
+}
+
+/* RESPONSIVE INDEX */
+@media (max-width: 768px) {
+  .tarjetas-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 0;
+    margin-top: 1.5rem;
+  }
+
+  .tarjeta {
+    padding: 1.5rem;
+    margin: 0;
+    width: 100%;
+  }
+
+  .tarjeta h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .tarjeta p {
+    font-size: 0.95rem;
+    margin-bottom: 1.25rem;
+    line-height: 1.5;
+  }
+
+  .icon-carousel {
+    height: 50px;
+    margin: 1.25rem 0;
+  }
+
+  .icon-carousel img {
+    height: 40px;
+  }
+
+  .github-icon {
+    width: 56px !important;
+    height: 56px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .tarjetas-container {
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .tarjeta {
+    padding: 1.25rem;
+    border-radius: 6px;
+    margin: 0;
+    width: 100%;
+  }
+
+  .tarjeta h3 {
+    font-size: 1.15rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .tarjeta p {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
+
+  .tarjeta-btn {
+    padding: 0.65rem 1.5rem;
+    font-size: 0.9rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .icon-carousel {
+    height: 45px;
+    margin: 1rem 0;
+  }
+
+  .icon-carousel img {
+    height: 35px;
+  }
+
+  .icon-track {
+    gap: 0.75rem;
+  }
+
+  .github-icon {
+    width: 48px !important;
+    height: 48px !important;
+  }
+  
+  .github-icon-container {
+    margin: 1rem 0;
   }
 }
