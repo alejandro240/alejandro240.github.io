@@ -1,6 +1,6 @@
-/* =============================== */
-/* ========== RESET Y VARIABLES == */
-/* =============================== */
+/* ============================================================================ */
+/* ====================== VARIABLES GLOBALES Y RESET ========================= */
+/* ============================================================================ */
 
 :root {
   --primary-color: #0a192f;
@@ -37,9 +37,200 @@ body {
   touch-action: pan-y pinch-zoom;
 }
 
-/* =============================== */
-/* ========== MENU MODERNO ======= */
-/* =============================== */
+/* ============================================================================ */
+/* ====================== ESTILOS GENERALES (TODAS LAS PÁGINAS) ============== */
+/* ============================================================================ */
+
+.title {
+  text-align: center;
+  padding: 60px 20px;
+  background: linear-gradient(135deg, var(--card-bg) 0%, var(--primary-color) 100%);
+  margin-bottom: 0;
+  border-bottom: 3px solid var(--secondary-color);
+  width: 100%;
+}
+
+.title h1 {
+  color: var(--text-light);
+  font-size: 3rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  position: relative;
+  display: inline-block;
+}
+
+.title h1::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: var(--secondary-color);
+}
+
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  flex: 1;
+  width: 100%;
+}
+
+section {
+  padding: 40px 30px;
+  margin: 40px auto;
+  background: var(--card-bg);
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  max-width: 1000px;
+  border: 1px solid rgba(100, 255, 218, 0.1);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+h1, h2 {
+  color: var(--text-light);
+  font-family: 'Roboto Mono', monospace;
+  letter-spacing: 2px;
+  margin-bottom: 25px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: 2rem;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 2px;
+  background: var(--secondary-color);
+}
+
+p {
+  color: var(--text-color);
+  line-height: 1.8;
+  font-size: 1.1rem;
+  margin-bottom: 1.5em;
+  text-align: justify;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+footer {
+  text-align: center;
+  padding: 30px 20px;
+  background: var(--bg-color);
+  border-top: 2px solid var(--secondary-color);
+  font-size: 0.95rem;
+  width: 100%;
+  margin: 40px 0 0 0;
+  color: var(--text-color);
+  position: relative;
+}
+
+/* Responsive General - Tablets */
+@media (max-width: 768px) {
+  .title {
+    padding: 20px 10px;
+  }
+  
+  .title h1 {
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+  }
+  
+  .title h1::after {
+    width: 60px;
+  }
+  
+  h2 {
+    font-size: 1.2rem;
+  }
+  
+  section {
+    padding: 30px 20px;
+    margin: 20px 10px;
+  }
+  
+  main {
+    padding: 10px;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  footer {
+    padding: 20px 10px;
+    font-size: 0.85rem;
+  }
+}
+
+/* Responsive General - Móviles */
+@media (max-width: 480px) {
+  .title {
+    padding: 12px 6px;
+    margin-bottom: 8px;
+  }
+  
+  .title h1 {
+    font-size: 1rem;
+    letter-spacing: 0px;
+    line-height: 1.2;
+  }
+  
+  .title h1::after {
+    display: none;
+  }
+  
+  h2 {
+    font-size: 0.9rem;
+    letter-spacing: 0px;
+    margin-bottom: 12px;
+  }
+  
+  h2::after {
+    width: 40px;
+    height: 1px;
+  }
+  
+  section {
+    padding: 12px 10px;
+    margin: 8px 4px;
+    border-radius: 6px;
+  }
+  
+  main {
+    padding: 5px;
+  }
+  
+  p {
+    font-size: 0.9rem;
+    text-align: left;
+    line-height: 1.5;
+  }
+
+  footer {
+    padding: 20px 10px;
+    font-size: 0.85rem;
+  }
+}
+
+/* ============================================================================ */
+/* ====================== MENÚ DE NAVEGACIÓN (TODAS LAS PÁGINAS) ============= */
+/* ============================================================================ */
 
 .navegacion {
   width: 100%;
@@ -141,6 +332,7 @@ body {
   display: none;
 }
 
+/* Menú Responsive - Tablets */
 @media (max-width: 900px) {
   .menu { width: 100%; }
   .menu li a:hover .imagen,
@@ -150,8 +342,8 @@ body {
   }
 }
 
+/* Menú Responsive - Móviles */
 @media (max-width: 768px) {
-  /* Menu vertical en tablets */
   .menu {
     height: auto;
     flex-direction: column;
@@ -171,114 +363,9 @@ body {
   .menu .first-item a {
     border-left: none;
   }
-
-  /* Títulos más pequeños */
-  .title {
-    padding: 20px 10px;
-  }
-  
-  .title h1 {
-    font-size: 1.3rem;
-    letter-spacing: 1px;
-  }
-  
-  .title h1::after {
-    width: 60px;
-  }
-  
-  h2 {
-    font-size: 1.2rem;
-  }
-  
-  /* Secciones con menos padding */
-  section {
-    padding: 30px 20px;
-    margin: 20px 10px;
-  }
-  
-  main {
-    padding: 10px;
-  }
-
-  /* Textos más pequeños */
-  p {
-    font-size: 1rem;
-  }
-
-  /* DevChallenge items */
-  .devchallenge-item {
-    padding: 20px;
-  }
-
-  .devchallenge-item h3 {
-    font-size: 1.3rem;
-  }
-
-  /* Proyectos */
-  .fila-item {
-    padding: 20px;
-  }
-
-  .fila-item h3 {
-    font-size: 1.2rem;
-  }
-  
-  /* Enlaces y botones con área táctil más grande */
-  .devchallenge-item a,
-  .fila-item a {
-    min-height: 44px;
-    min-width: 44px;
-    padding: 12px 24px;
-  }
 }
 
 @media (max-width: 480px) {
-  /* Títulos aún más pequeños para móviles */
-  .title {
-    padding: 12px 6px;
-    margin-bottom: 8px;
-  }
-  
-  .title h1 {
-    font-size: 1rem;
-    letter-spacing: 0px;
-    line-height: 1.2;
-  }
-  
-  .title h1::after {
-    display: none;
-  }
-  
-  h2 {
-    font-size: 0.9rem;
-    letter-spacing: 0px;
-    margin-bottom: 12px;
-  }
-  
-  h2::after {
-    width: 40px;
-    height: 1px;
-  }
-  
-  /* Secciones compactas */
-  section {
-    padding: 12px 10px;
-    margin: 8px 4px;
-    border-radius: 6px;
-  }
-  
-  main {
-    padding: 5px;
-  }
-  
-  /* Textos ajustados */
-  p {
-    font-size: 0.9rem;
-    text-align: left;
-    line-height: 1.5;
-  }
-
-  /* Menu más compacto */
   .menu li a {
     height: 55px;
   }
@@ -286,169 +373,26 @@ body {
   .menu li a .text-item {
     font-size: 14px;
   }
-
-  /* DevChallenge badge más pequeño */
-  #devchallenge::before {
-    font-size: 0.75rem;
-    padding: 4px 10px;
-    top: -12px;
-  }
-
-  .devchallenge-item {
-    padding: 15px 12px;
-  }
-
-  .devchallenge-item h3 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-  }
-
-  .devchallenge-item p {
-    font-size: 0.95rem;
-    margin-bottom: 12px;
-  }
-
-  .devchallenge-item a {
-    padding: 10px 16px;
-    font-size: 0.85rem;
-    display: inline-block;
-    margin: 5px 5px 5px 0;
-  }
-
-  /* Proyectos compactos */
-  .fila-item {
-    padding: 15px 12px;
-    margin: 0;
-  }
-
-  .fila-item h3 {
-    font-size: 1.1rem;
-    margin-bottom: 10px;
-  }
-
-  .fila-item p {
-    font-size: 0.9rem;
-    margin-bottom: 12px;
-  }
-
-  .fila-item a {
-    padding: 10px 16px;
-    font-size: 0.85rem;
-    display: inline-block;
-    margin: 5px 5px 5px 0;
-  }
-
-  /* Botones de filtrado con área táctil mínima */
-  #botones-lenguaje button,
-  #limpiar-btn {
-    padding: 12px 14px;
-    font-size: 0.8rem;
-    min-height: 44px;
-    min-width: 44px;
-  }
-
-  #botones-lenguaje {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .logo-lenguaje {
-    width: 20px;
-    height: 20px;
-  }
-
-  #contador {
-    font-size: 0.85rem;
-  }
-
-  /* Footer responsive */
-  footer {
-    padding: 20px 10px;
-    font-size: 0.85rem;
-  }
 }
 
-/* =============================== */
-/* ========== GENERAL ============= */
-/* =============================== */
+/* ============================================================================ */
+/* ====================== PÁGINA: INDEX.HTML ================================= */
+/* ============================================================================ */
 
-.title {
-  text-align: center;
-  padding: 60px 20px;
-  background: linear-gradient(135deg, var(--card-bg) 0%, var(--primary-color) 100%);
-  margin-bottom: 0;
-  border-bottom: 3px solid var(--secondary-color);
-  width: 100%;
-}
-
-.title h1 {
-  color: var(--text-light);
-  font-size: 3rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  position: relative;
-  display: inline-block;
-}
-
-.title h1::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100px;
-  height: 3px;
-  background: var(--secondary-color);
-}
-
-main {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-  flex: 1;
-  width: 100%;
-}
-
-section {
-  padding: 40px 30px;
-  margin: 40px auto;
-  background: var(--card-bg);
-  border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  max-width: 1000px;
-  border: 1px solid rgba(100, 255, 218, 0.1);
-  width: 100%;
-  box-sizing: border-box;
-}
-
-h1, h2 {
+/* Sección Sobre Mí - index.html */
+section h2 {
   color: var(--text-light);
   font-family: 'Roboto Mono', monospace;
   letter-spacing: 2px;
   margin-bottom: 25px;
   text-align: center;
   text-transform: uppercase;
-}
-
-h2 {
   font-size: 2rem;
   position: relative;
   padding-bottom: 15px;
 }
 
-h2::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 2px;
-  background: var(--secondary-color);
-}
-
-p {
+section p {
   color: var(--text-color);
   line-height: 1.8;
   font-size: 1.1rem;
@@ -459,22 +403,240 @@ p {
   margin-right: auto;
 }
 
-footer {
-  text-align: center;
-  padding: 30px 20px;
-  background: var(--bg-color);
-  border-top: 2px solid var(--secondary-color);
-  font-size: 0.95rem;
-  width: 100%;
-  margin: 40px 0 0 0;
-  color: var(--text-color);
-  position: relative;
+/* Tarjetas Destacadas - index.html */
+.tarjetas-section {
+  margin-top: 3rem;
 }
 
-/* =============================== */
-/* ========== HABILIDADES ======== */
-/* =============================== */
+.tarjetas-destacadas-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
+.tarjeta-destacada {
+  background: rgba(100, 255, 218, 0.1);
+  border: 2px solid #64ffda;
+  border-radius: 8px;
+  padding: 2rem;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  min-height: 400px;
+}
+
+.tarjeta-destacada:hover,
+.tarjeta-destacada:focus-within {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(100, 255, 218, 0.3);
+}
+
+.tarjeta-destacada h3 {
+  color: #64ffda;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.tarjeta-destacada p {
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+  font-size: 1rem;
+  text-align: center;
+  flex-grow: 1;
+}
+
+.tarjeta-btn {
+  display: inline-block;
+  background: #64ffda;
+  color: #0a192f;
+  padding: 0.75rem 2rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s;
+  min-height: 44px;
+  min-width: 44px;
+  margin-top: auto;
+}
+
+.tarjeta-btn:hover,
+.tarjeta-btn:focus {
+  background: #52d4ba;
+  transform: scale(1.05);
+  outline: 2px solid #64ffda;
+  outline-offset: 2px;
+}
+
+.tarjeta-destacada .tarjeta-btn {
+  margin-top: auto;
+}
+
+/* Carrusel de Iconos - index.html */
+.icon-carousel {
+  overflow: hidden;
+  height: 60px;
+  margin: 1.5rem 0;
+  position: relative;
+  -webkit-mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+  mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+}
+
+.icon-track {
+  display: flex;
+  gap: 1rem;
+  animation: scroll-icons 15s linear infinite;
+  width: max-content;
+}
+
+.icon-track:hover {
+  animation-play-state: paused;
+}
+
+.icon-carousel img {
+  height: 50px;
+  opacity: 0.8;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.icon-carousel img:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+@keyframes scroll-icons {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Icono GitHub - index.html */
+.github-icon-container {
+  margin: 1.5rem 0;
+}
+
+.github-icon {
+  opacity: 0.8;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.github-icon:hover {
+  opacity: 1;
+  transform: rotate(360deg) scale(1.1);
+}
+
+/* INDEX.HTML - Responsive Tablets */
+@media (max-width: 768px) {
+  .tarjetas-destacadas-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .tarjeta-destacada {
+    min-height: auto;
+    padding: 1.5rem;
+  }
+
+  .tarjeta-destacada h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .tarjeta-destacada p {
+    font-size: 0.95rem;
+    margin-bottom: 1.25rem;
+    line-height: 1.5;
+  }
+
+  .icon-carousel {
+    height: 50px;
+    margin: 1.25rem 0;
+  }
+
+  .icon-carousel img {
+    height: 40px;
+  }
+
+  .github-icon {
+    width: 56px !important;
+    height: 56px !important;
+  }
+}
+
+/* INDEX.HTML - Responsive Móviles */
+@media (max-width: 480px) {
+  .tarjetas-section {
+    margin-top: 0.5rem !important;
+  }
+
+  .tarjetas-destacadas-container {
+    gap: 1rem;
+    margin-top: 1rem;
+    padding: 0 0.5rem;
+  }
+
+  .tarjeta-destacada {
+    padding: 1rem;
+    border-radius: 6px;
+    min-height: auto;
+  }
+
+  .tarjeta-destacada h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .tarjeta-destacada p {
+    font-size: 0.85rem;
+    margin-bottom: 0.8rem;
+    line-height: 1.4;
+    text-align: center;
+  }
+
+  .tarjeta-destacada .tarjeta-btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+    width: 100%;
+  }
+
+  .icon-carousel {
+    height: 28px;
+    margin: 0.4rem 0;
+  }
+
+  .icon-carousel img {
+    height: 22px;
+  }
+
+  .icon-track {
+    gap: 0.4rem;
+  }
+
+  .github-icon {
+    width: 32px !important;
+    height: 32px !important;
+  }
+  
+  .github-icon-container {
+    margin: 0.4rem 0;
+  }
+}
+
+/* ============================================================================ */
+/* ====================== PÁGINA: HABILIDADES.HTML =========================== */
+/* ============================================================================ */
+
+/* Grid de Habilidades */
 .habilidades-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -482,37 +644,6 @@ footer {
   max-width: 900px;
   margin: 0 auto;
   padding: 20px;
-}
-
-@media (max-width: 768px) {
-  .habilidades-grid {
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 20px;
-    padding: 15px;
-  }
-}
-
-@media (max-width: 480px) {
-  .habilidades-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    padding: 8px;
-  }
-
-  .habilidad-card {
-    padding: 12px 8px;
-    border-radius: 8px;
-  }
-
-  .habilidad-card img {
-    width: 45px;
-    height: 45px;
-    margin-bottom: 6px;
-  }
-
-  .habilidad-card h3 {
-    font-size: 0.75rem;
-  }
 }
 
 .habilidad-card {
@@ -558,10 +689,57 @@ footer {
   margin: 0;
 }
 
-/* =============================== */
-/* ========== PROYECTOS ========== */
-/* =============================== */
+/* HABILIDADES.HTML - Responsive Tablets */
+@media (max-width: 768px) {
+  .habilidades-grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 20px;
+    padding: 15px;
+  }
 
+  .habilidad-card {
+    padding: 20px;
+  }
+
+  .habilidad-card img {
+    width: 70px;
+    height: 70px;
+  }
+
+  .habilidad-card h3 {
+    font-size: 1rem;
+  }
+}
+
+/* HABILIDADES.HTML - Responsive Móviles */
+@media (max-width: 480px) {
+  .habilidades-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    padding: 8px;
+  }
+
+  .habilidad-card {
+    padding: 12px 8px;
+    border-radius: 8px;
+  }
+
+  .habilidad-card img {
+    width: 45px;
+    height: 45px;
+    margin-bottom: 6px;
+  }
+
+  .habilidad-card h3 {
+    font-size: 0.75rem;
+  }
+}
+
+/* ============================================================================ */
+/* ====================== PÁGINA: PROYECTOS.HTML ============================= */
+/* ============================================================================ */
+
+/* Sección DevChallenge - proyectos.html */
 #devchallenge {
   background: var(--card-bg);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
@@ -570,6 +748,7 @@ footer {
   margin: 40px auto;
   border: 1px solid var(--secondary-color);
   position: relative;
+  padding: 40px 30px;
 }
 
 #devchallenge::before {
@@ -593,35 +772,6 @@ footer {
   padding: 20px;
   max-width: 900px;
   margin: 0 auto;
-}
-
-@media (max-width: 768px) {
-  .devchallenge-proyectos {
-    grid-template-columns: 1fr;
-    gap: 20px;
-    padding: 15px;
-  }
-  
-  #devchallenge::before {
-    font-size: 0.85rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .devchallenge-proyectos {
-    padding: 10px;
-    gap: 15px;
-  }
-  
-  #devchallenge {
-    margin: 20px 5px;
-    border-radius: 8px;
-  }
-  
-  #devchallenge::before {
-    font-size: 0.75rem;
-    padding: 4px 10px;
-  }
 }
 
 .devchallenge-item {
@@ -682,6 +832,8 @@ footer {
   letter-spacing: 1px;
   margin-right: 10px;
   margin-top: 10px;
+  min-height: 44px;
+  min-width: 44px;
 }
 
 .devchallenge-item a:hover,
@@ -694,6 +846,7 @@ footer {
   outline-offset: 2px;
 }
 
+/* Sección Proyectos Normales - proyectos.html */
 #proyectos {
   background: var(--card-bg);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
@@ -702,19 +855,6 @@ footer {
   margin: 40px auto;
   border: 1px solid rgba(100, 255, 218, 0.1);
   padding: 0;
-}
-
-@media (max-width: 768px) {
-  #proyectos {
-    margin: 20px 10px;
-    border-radius: 8px;
-  }
-}
-
-@media (max-width: 480px) {
-  #proyectos {
-    margin: 15px 5px;
-  }
 }
 
 #controles {
@@ -726,55 +866,6 @@ footer {
   padding: 20px;
   background: var(--primary-color);
   border-radius: 10px;
-}
-
-@media (max-width: 768px) {
-  #controles {
-    flex-direction: column;
-    align-items: stretch;
-    padding: 15px;
-    gap: 12px;
-  }
-  
-  #botones-lenguaje {
-    justify-content: center;
-    gap: 10px;
-    order: 0;
-  }
-  
-  #limpiar-btn {
-    width: 100%;
-    min-height: 48px;
-    order: 1;
-  }
-  
-  #contador {
-    text-align: center;
-    margin: 10px 0 0 0;
-    order: 2;
-  }
-}
-
-@media (max-width: 480px) {
-  #controles {
-    padding: 12px;
-    gap: 10px;
-  }
-  
-  #botones-lenguaje {
-    gap: 8px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  #limpiar-btn {
-    order: 1;
-  }
-  
-  #contador {
-    order: 2;
-    width: 100%;
-  }
 }
 
 #botones-lenguaje {
@@ -841,23 +932,6 @@ footer {
   padding: 20px;
 }
 
-@media (max-width: 700px) {
-  .lista-proyectos {
-    grid-template-columns: 1fr;
-    gap: 20px;
-    padding: 15px 10px;
-    margin-top: 20px;
-  }
-}
-
-@media (max-width: 480px) {
-  .lista-proyectos {
-    gap: 15px;
-    padding: 10px 5px;
-    margin-top: 15px;
-  }
-}
-
 .fila-item {
   background: var(--primary-color);
   border-radius: 10px;
@@ -866,19 +940,6 @@ footer {
   transition: all 0.3s ease;
   border-left: 4px solid var(--secondary-color);
   border: 2px solid rgba(100, 255, 218, 0.1);
-}
-
-@media (max-width: 768px) {
-  .fila-item {
-    padding: 20px;
-  }
-}
-
-@media (max-width: 480px) {
-  .fila-item {
-    padding: 15px;
-    border-radius: 8px;
-  }
 }
 
 .fila-item:hover,
@@ -919,6 +980,8 @@ footer {
   letter-spacing: 1px;
   margin-right: 10px;
   margin-top: 10px;
+  min-height: 44px;
+  min-width: 44px;
 }
 
 .fila-item a:hover,
@@ -930,10 +993,192 @@ footer {
   outline-offset: 2px;
 }
 
-/* =============================== */
-/* ========== CONTACTO ============ */
-/* =============================== */
+/* PROYECTOS.HTML - Responsive Tablets */
+@media (max-width: 768px) {
+  #devchallenge {
+    margin: 20px 10px;
+    border-radius: 8px;
+    padding: 30px 20px;
+  }
+  
+  #devchallenge::before {
+    font-size: 0.85rem;
+  }
 
+  .devchallenge-proyectos {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 15px;
+  }
+
+  .devchallenge-item {
+    padding: 20px;
+  }
+
+  .devchallenge-item h3 {
+    font-size: 1.3rem;
+  }
+
+  .devchallenge-item a {
+    padding: 12px 24px;
+  }
+
+  #proyectos {
+    margin: 20px 10px;
+    border-radius: 8px;
+  }
+
+  #controles {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 15px;
+    gap: 12px;
+  }
+  
+  #botones-lenguaje {
+    justify-content: center;
+    gap: 10px;
+    order: 0;
+  }
+  
+  #limpiar-btn {
+    width: 100%;
+    min-height: 48px;
+    order: 1;
+  }
+  
+  #contador {
+    text-align: center;
+    margin: 10px 0 0 0;
+    order: 2;
+  }
+
+  .lista-proyectos {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 15px 10px;
+    margin-top: 20px;
+  }
+
+  .fila-item {
+    padding: 20px;
+  }
+
+  .fila-item h3 {
+    font-size: 1.2rem;
+  }
+
+  .fila-item a {
+    padding: 12px 24px;
+  }
+}
+
+/* PROYECTOS.HTML - Responsive Móviles */
+@media (max-width: 480px) {
+  #devchallenge {
+    margin: 20px 5px;
+    border-radius: 8px;
+    padding: 20px 15px;
+  }
+  
+  #devchallenge::before {
+    font-size: 0.75rem;
+    padding: 4px 10px;
+  }
+
+  .devchallenge-proyectos {
+    padding: 10px;
+    gap: 15px;
+  }
+
+  .devchallenge-item {
+    padding: 15px 12px;
+  }
+
+  .devchallenge-item h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+
+  .devchallenge-item p {
+    font-size: 0.95rem;
+    margin-bottom: 12px;
+  }
+
+  .devchallenge-item a {
+    padding: 10px 16px;
+    font-size: 0.85rem;
+    display: inline-block;
+    margin: 5px 5px 5px 0;
+  }
+
+  #proyectos {
+    margin: 15px 5px;
+  }
+
+  #controles {
+    padding: 12px;
+    gap: 10px;
+  }
+  
+  #botones-lenguaje {
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  #botones-lenguaje button,
+  #limpiar-btn {
+    padding: 12px 14px;
+    font-size: 0.8rem;
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .logo-lenguaje {
+    width: 20px;
+    height: 20px;
+  }
+
+  #contador {
+    font-size: 0.85rem;
+  }
+
+  .lista-proyectos {
+    gap: 15px;
+    padding: 10px 5px;
+    margin-top: 15px;
+  }
+
+  .fila-item {
+    padding: 15px 12px;
+    margin: 0;
+    border-radius: 8px;
+  }
+
+  .fila-item h3 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+  }
+
+  .fila-item p {
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+  }
+
+  .fila-item a {
+    padding: 10px 16px;
+    font-size: 0.85rem;
+    display: inline-block;
+    margin: 5px 5px 5px 0;
+  }
+}
+
+/* ============================================================================ */
+/* ====================== PÁGINA: CONTACTO.HTML ============================== */
+/* ============================================================================ */
+
+/* Sección Contacto */
 section#contacto {
   padding: 40px 30px;
   margin: 40px auto;
@@ -1022,7 +1267,12 @@ section#contacto button[type="submit"]:hover {
   box-shadow: 0 10px 25px rgba(100, 255, 218, 0.4);
 }
 
+/* CONTACTO.HTML - Responsive Tablets */
 @media (max-width: 768px) {
+  section#contacto {
+    padding: 30px 20px;
+  }
+
   section#contacto form {
     padding: 30px 25px;
     gap: 15px;
@@ -1045,7 +1295,12 @@ section#contacto button[type="submit"]:hover {
   }
 }
 
+/* CONTACTO.HTML - Responsive Móviles */
 @media (max-width: 480px) {
+  section#contacto {
+    padding: 20px 15px;
+  }
+
   section#contacto form {
     padding: 20px 15px;
     gap: 12px;
@@ -1072,233 +1327,5 @@ section#contacto button[type="submit"]:hover {
     font-size: 0.95rem;
     min-height: 48px;
     width: 100%;
-  }
-}
-
-/* =============================== */
-/* ========== INDEX/INICIO ======= */
-/* =============================== */
-
-.tarjetas-section {
-  margin-top: 3rem;
-}
-
-.tarjetas-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
-  grid-auto-rows: 1fr;
-  gap: 2rem;
-  margin-top: 2rem;
-  width: 100%;
-  max-width: 100%;
-}
-
-.tarjeta {
-  background: rgba(100, 255, 218, 0.1);
-  border: 2px solid #64ffda;
-  border-radius: 8px;
-  padding: 2rem;
-  text-align: center;
-  transition: transform 0.3s, box-shadow 0.3s;
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-}
-
-.tarjeta:hover,
-.tarjeta:focus-within {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(100, 255, 218, 0.3);
-}
-
-.tarjeta h3 {
-  color: #64ffda;
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
-}
-
-.tarjeta p {
-  margin-bottom: 1.5rem;
-  line-height: 1.6;
-  font-size: 1rem;
-  text-align: justify;
-}
-
-.tarjeta-btn {
-  display: inline-block;
-  background: #64ffda;
-  color: #0a192f;
-  padding: 0.75rem 2rem;
-  border-radius: 4px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: all 0.3s;
-  min-height: 44px;
-  min-width: 44px;
-  margin-top: auto;
-}
-
-.tarjeta-btn:hover,
-.tarjeta-btn:focus {
-  background: #52d4ba;
-  transform: scale(1.05);
-  outline: 2px solid #64ffda;
-  outline-offset: 2px;
-}
-
-/* Carrusel de iconos */
-.icon-carousel {
-  overflow: hidden;
-  height: 60px;
-  margin: 1.5rem 0;
-  position: relative;
-  -webkit-mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
-  mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
-}
-
-.icon-track {
-  display: flex;
-  gap: 1rem;
-  animation: scroll-icons 15s linear infinite;
-  width: max-content;
-}
-
-.icon-track:hover {
-  animation-play-state: paused;
-}
-
-.icon-carousel img {
-  height: 50px;
-  opacity: 0.8;
-  transition: opacity 0.3s, transform 0.3s;
-}
-
-.icon-carousel img:hover {
-  opacity: 1;
-  transform: scale(1.1);
-}
-
-@keyframes scroll-icons {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-.github-icon-container {
-  margin: 1.5rem 0;
-}
-
-.github-icon {
-  opacity: 0.8;
-  transition: opacity 0.3s, transform 0.3s;
-}
-
-.github-icon:hover {
-  opacity: 1;
-  transform: rotate(360deg) scale(1.1);
-}
-
-/* RESPONSIVE INDEX */
-@media (max-width: 768px) {
-  .tarjetas-container {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    padding: 0;
-    margin-top: 1.5rem;
-  }
-
-  .tarjeta {
-    padding: 1.5rem;
-    margin: 0;
-    width: 100%;
-  }
-
-  .tarjeta h3 {
-    font-size: 1.3rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .tarjeta p {
-    font-size: 0.95rem;
-    margin-bottom: 1.25rem;
-    line-height: 1.5;
-  }
-
-  .icon-carousel {
-    height: 50px;
-    margin: 1.25rem 0;
-  }
-
-  .icon-carousel img {
-    height: 40px;
-  }
-
-  .github-icon {
-    width: 56px !important;
-    height: 56px !important;
-  }
-}
-
-@media (max-width: 480px) {
-  .tarjetas-section {
-    margin-top: 0.5rem !important;
-  }
-
-  .tarjetas-container {
-    gap: 0.6rem;
-    margin-top: 0.5rem;
-  }
-
-  .tarjeta {
-    padding: 0.5rem;
-    border-radius: 6px;
-    margin: 0;
-    width: 100%;
-  }
-
-  .tarjeta h3 {
-    font-size: 0.8rem;
-    margin-bottom: 0.3rem;
-  }
-
-  .tarjeta p {
-    font-size: 0.75rem;
-    margin-bottom: 0.5rem;
-    line-height: 1.2;
-  }
-
-  .tarjeta-btn {
-    padding: 0.45rem 0.9rem;
-    font-size: 0.75rem;
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-  }
-
-  .icon-carousel {
-    height: 28px;
-    margin: 0.4rem 0;
-  }
-
-  .icon-carousel img {
-    height: 22px;
-  }
-
-  .icon-track {
-    gap: 0.4rem;
-  }
-
-  .github-icon {
-    width: 32px !important;
-    height: 32px !important;
-  }
-  
-  .github-icon-container {
-    margin: 0.4rem 0;
   }
 }
