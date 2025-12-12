@@ -442,6 +442,9 @@ section p {
 /* Tarjetas Destacadas - index.html */
 .tarjetas-section {
   margin-top: 3rem;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .tarjetas-destacadas-container {
@@ -453,6 +456,8 @@ section p {
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .tarjeta-destacada {
@@ -463,10 +468,12 @@ section p {
   text-align: center;
   transition: transform 0.3s, box-shadow 0.3s;
   width: 100%;
+  max-width: 100%;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   min-height: 400px;
+  overflow: hidden;
 }
 
 .tarjeta-destacada:hover,
@@ -613,13 +620,16 @@ section p {
 @media (max-width: 480px) {
   .tarjetas-section {
     margin-top: 0.5rem !important;
+    padding: 0;
   }
 
   .tarjetas-destacadas-container {
     gap: 1.2rem;
     margin-top: 1rem;
-    padding: 0;
-    width: 100%;
+    padding: 0 0.5rem;
+    width: calc(100% - 1rem);
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .tarjeta-destacada {
@@ -627,6 +637,7 @@ section p {
     border-radius: 8px;
     min-height: auto;
     width: 100%;
+    max-width: 100%;
     margin: 0;
   }
 
@@ -675,10 +686,13 @@ section p {
 @media (max-width: 375px) {
   .tarjetas-destacadas-container {
     gap: 1rem;
+    padding: 0 0.3rem;
+    width: calc(100% - 0.6rem);
   }
 
   .tarjeta-destacada {
     padding: 1.2rem 1rem;
+    max-width: 100%;
   }
 
   .tarjeta-destacada h3 {
