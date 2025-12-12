@@ -963,7 +963,7 @@ section p {
   border-radius: 10px;
   max-width: 1000px;
   margin: 40px auto;
-  border: 1px solid var(--secondary-color);min(100%, 280px)
+  border: 1px solid var(--secondary-color);
   position: relative;
   padding: 40px 30px;
 }
@@ -1213,13 +1213,16 @@ section p {
 /* PROYECTOS.HTML - Responsive Tablets */
 @media (max-width: 768px) {
   #devchallenge {
-    margin: 20px 10px;
+    margin: 20px auto;
     border-radius: 8px;
     padding: 30px 20px;
+    width: calc(100% - 20px);
   }
   
   #devchallenge::before {
     font-size: 0.85rem;
+    left: 15px;
+    top: -12px;
   }
 
   .devchallenge-proyectos {
@@ -1293,14 +1296,17 @@ section p {
 /* PROYECTOS.HTML - Responsive Móviles */
 @media (max-width: 480px) {
   #devchallenge {
-    margin: 20px 5px;
+    margin: 20px auto;
     border-radius: 8px;
     padding: 20px 15px;
+    width: calc(100% - 10px);
   }
   
   #devchallenge::before {
     font-size: 0.75rem;
     padding: 4px 10px;
+    left: 10px;
+    top: -10px;
   }
 
   .devchallenge-proyectos {
